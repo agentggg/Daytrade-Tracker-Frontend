@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ICT-DayTrade-Frontend/static/css/main.e6c13ad2.css",
+    "main.js": "/ICT-DayTrade-Frontend/static/js/main.49ddc96f.js",
+    "index.html": "/ICT-DayTrade-Frontend/index.html",
+    "main.e6c13ad2.css.map": "/ICT-DayTrade-Frontend/static/css/main.e6c13ad2.css.map",
+    "main.49ddc96f.js.map": "/ICT-DayTrade-Frontend/static/js/main.49ddc96f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.49ddc96f.js"
+  ]
+}
