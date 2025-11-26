@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ICT-DayTrade-Frontend/static/css/main.e6c13ad2.css",
-    "main.js": "/ICT-DayTrade-Frontend/static/js/main.60436beb.js",
-    "static/js/453.421c5c5a.chunk.js": "/ICT-DayTrade-Frontend/static/js/453.421c5c5a.chunk.js",
-    "index.html": "/ICT-DayTrade-Frontend/index.html",
-    "main.e6c13ad2.css.map": "/ICT-DayTrade-Frontend/static/css/main.e6c13ad2.css.map",
-    "main.60436beb.js.map": "/ICT-DayTrade-Frontend/static/js/main.60436beb.js.map",
-    "453.421c5c5a.chunk.js.map": "/ICT-DayTrade-Frontend/static/js/453.421c5c5a.chunk.js.map"
+    "main.css": "/Daytrade-Tracker-Frontend/static/css/main.e6c13ad2.css",
+    "main.js": "/Daytrade-Tracker-Frontend/static/js/main.3a45b16e.js",
+    "static/js/453.421c5c5a.chunk.js": "/Daytrade-Tracker-Frontend/static/js/453.421c5c5a.chunk.js",
+    "index.html": "/Daytrade-Tracker-Frontend/index.html",
+    "main.e6c13ad2.css.map": "/Daytrade-Tracker-Frontend/static/css/main.e6c13ad2.css.map",
+    "main.3a45b16e.js.map": "/Daytrade-Tracker-Frontend/static/js/main.3a45b16e.js.map",
+    "453.421c5c5a.chunk.js.map": "/Daytrade-Tracker-Frontend/static/js/453.421c5c5a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.60436beb.js"
+    "static/js/main.3a45b16e.js"
   ]
 }
