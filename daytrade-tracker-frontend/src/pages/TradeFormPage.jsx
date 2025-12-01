@@ -1,6 +1,7 @@
 // src/pages/TradeFormPage.jsx
 import React, { useState, useEffect } from "react";
 import axiosClient from "../api/axiosClient";
+import { useAuth } from "../context/AuthContext";
 
 const TIMEFRAME_OPTIONS = [
   "1m",
@@ -280,10 +281,10 @@ const TradeFormPage = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("success");
-
   // TopstepX raw import
   const [rawImport, setRawImport] = useState("");
   const [parseError, setParseError] = useState("");
+  const { user } = useAuth(); // <-- this gives you the logged-in user
 
   // Risk helper state
   const [riskHelper, setRiskHelper] = useState({
@@ -297,6 +298,14 @@ const TradeFormPage = () => {
   const [tooltipField, setTooltipField] = useState(null);
   const [modalField, setModalField] = useState(null);
 
+  useEffect(() => {
+  if (user?.username) {
+    setForm((prev) => ({
+      ...prev,
+      username: user.username,
+    }));
+  }
+}, [user]);
   // Load from localStorage on mount
   useEffect(() => {
     try {
@@ -659,7 +668,7 @@ const TradeFormPage = () => {
       pnl: isNaN(pnlVal) ? prev.pnl : pnlVal,
       result,
       notes: prev.notes ? `${prev.notes}\n\n${topstepSentence}` : topstepSentence,
-      username: "cisco",
+      username: user,
     }));
 
     setMessageType("success");

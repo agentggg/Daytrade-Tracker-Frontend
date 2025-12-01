@@ -17,6 +17,7 @@ import {
   Line,
   Brush,
 } from "recharts";
+import { useAuth } from "../context/AuthContext";
 
 // ---------- helpers ----------
 const COLORS_RESULT = {
@@ -246,7 +247,7 @@ const AnalyticsPage = () => {
   const [trades, setTrades] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openHelp, setOpenHelp] = useState(null);
-
+  const { user } = useAuth(); // <-- this gives you the logged-in user
   const [tfView, setTfView] = useState("monthly"); // yearly | monthly | weekly | daily
   const [selectedBucketKey, setSelectedBucketKey] = useState(null);
   const [selectedDayKey, setSelectedDayKey] = useState(null);
@@ -255,7 +256,7 @@ const AnalyticsPage = () => {
     const fetchTrades = async () => {
       setLoading(true);
       try {
-        const res = await axiosClient.get("/trades");
+        const res = await axiosClient.get(`/trades?username=${user}`);
         setTrades(res.data || []);
       } catch (err) {
         console.error("Failed to load trades", err);
@@ -264,7 +265,7 @@ const AnalyticsPage = () => {
       }
     };
     fetchTrades();
-  }, []);
+  }, [user]);
 
   // normalize trades
   const normalizedTrades = useMemo(() => {

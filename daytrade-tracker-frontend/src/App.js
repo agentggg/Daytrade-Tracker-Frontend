@@ -1,6 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+
 import LoginPage from "./pages/LoginPage";
 import TradeFormPage from "./pages/TradeFormPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
@@ -8,6 +14,23 @@ import PrivateRoute from "./components/PrivateRoute";
 import BacktestAnalyticsPage from "./pages/BacktestAnalyticsPage";
 import BacktestNotesPage from "./pages/BacktestNotesPage";
 
+// -----------------
+// ✅ PUT THIS HERE
+// -----------------
+const NavbarWrapper = () => {
+  const location = useLocation();
+  const hideOn = ["/login", "/"]; // hide navbar on login or root
+
+  if (hideOn.includes(location.pathname)) {
+    return null;
+  }
+
+  return <Navbar />;
+};
+
+// -----------------
+// Your existing Navbar
+// -----------------
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
 
@@ -15,6 +38,7 @@ const Navbar = () => {
     <nav style={styles.nav}>
       <div style={styles.navLeft}>
         <span style={styles.logo}>ICT Journal</span>
+
         {isAuthenticated && (
           <>
             <Link to="/trade" style={styles.link}>Submit Trade</Link>
@@ -24,26 +48,24 @@ const Navbar = () => {
           </>
         )}
       </div>
-      <div>
-        {isAuthenticated ? (
-          <></>
-          // <button style={styles.logoutBtn} onClick={logout}>Logout</button>
-        ) : (
-          <Link to="/login" style={styles.link}>Login</Link>
-        )}
-      </div>
     </nav>
   );
 };
 
+// -----------------
+// APP COMPONENT
+// -----------------
 const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
+        {/* ⬇️ Navbar now conditionally appears */}
+        <NavbarWrapper />
+
         <div style={styles.pageWrapper}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+
             <Route
               path="/trade"
               element={
@@ -52,6 +74,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
+
             <Route
               path="/analytics"
               element={
@@ -60,7 +83,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route path="*" element={<LoginPage />} />
+
             <Route
               path="/backtest"
               element={
@@ -69,16 +92,19 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-          <Route
-            path="/backtest-analytics"
-            element={
-              <PrivateRoute>
-                <BacktestAnalyticsPage />
-              </PrivateRoute>
-            }
-          />
-          </Routes>
 
+            <Route
+              path="/backtest-analytics"
+              element={
+                <PrivateRoute>
+                  <BacktestAnalyticsPage />
+                </PrivateRoute>
+              }
+            />
+
+            {/* default redirect */}
+            <Route path="*" element={<LoginPage />} />
+          </Routes>
         </div>
       </Router>
     </AuthProvider>

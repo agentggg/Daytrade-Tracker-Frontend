@@ -22,9 +22,11 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const res = await axiosClient.post("login_verification/", form);
-      const { token, user } = res.data;
-      login(token, user);
-      navigate("/trade");
+      const { token, username, active } = res.data;
+      if (active){
+        login(token, username);
+        navigate("/trade");
+      }
     } catch (err) {
       console.error(err);
       setError("Login failed. Check your credentials.");

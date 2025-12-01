@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  // baseURL: "http://192.168.1.130:8000", // <-- change this
+  // baseURL: "http://localhost:8000", // <-- change this
   baseURL: "https://ict-agentofgod.pythonanywhere.com", // <-- change this
 });
 
